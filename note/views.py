@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView, DetailView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView
 from note.models import  Todo
 from django.urls import reverse_lazy
 
@@ -19,3 +19,7 @@ class NoteDetailView(DetailView):
     model = Todo
     template_name= 'note_detail.html'
      
+class UpdateListView(UpdateView):
+    model = Todo
+    template_name= 'update_list.html'
+    fields = '__all__'
