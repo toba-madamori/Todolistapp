@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load socialaccount %}
+
+
+{% block title %}
+  Login 
+{% endblock title %}  
+
+{% block content %}
+
+
+<h4>Implemented Google OAuth here.</h4>
+<br>
+{% if user.is_authenticated %}
+  <p>Welcome, You are logged in as {{ user.username }}</p>
+{% else %}
+  <a href="{% provider_login_url 'google' %}">Login With Google</a>
+{% endif %}
+
+
+{% endblock content %}
