@@ -13,7 +13,11 @@ class HomeView(ListView):
 class TodoListView(CreateView):
     model = Todo
     template_name= 'new_todo_list.html'
-    fields= '__all__'
+    fields= ['title', 'note']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 class NoteDetailView(DetailView):
     model = Todo
@@ -22,8 +26,8 @@ class NoteDetailView(DetailView):
 class UpdateListView(UpdateView):
     model = Todo
     template_name= 'update_list.html'
-    fields = '__all__'
-
+    fields= ['title', 'note']
+    
 class DeleteListView(DeleteView):
     model = Todo
     template_name= 'delete_list.html'
